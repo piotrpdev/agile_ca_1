@@ -1,1 +1,3 @@
-## Agile Software Practice - Assignment 1.
+# Agile Software Practice - Assignment 1
+
+- Transplanted `compose.yaml` from previous `docker-profile-app` lab repo.
