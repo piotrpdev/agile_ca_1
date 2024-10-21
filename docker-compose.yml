@@ -17,6 +17,10 @@ services:
     depends_on:
       - database
 
+  cache:
+    container_name: redis
+    image: redis:alpine
+
   database:
     container_name: mongoDB
     image: mongo:8.0-rc
