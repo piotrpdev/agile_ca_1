@@ -2,29 +2,33 @@ networks:
   mongo-express-database-network:
   cache-movies-network:
   database-movies-network:
+  database-mongo-seed-network:
 
 volumes:
-  profiledata:
+  database-data:
 
 services:
   api:
-    image: doconnor/movies-api:1.0
     container_name: movies-api
-      environment:
+    image: doconnor/movies-api:1.0
+    ports:
+      - 9000:9000
+    environment:
       - MONGODB_URI=mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@database:27017
       - REDIS_URI=redis://cache
       - ENABLE_WRITING_HANDLERS=false
-    ports:
-      - '9000:9000'
     networks:
        - cache-movies-network
        - database-movies-network
     depends_on:
       - database
+      - cache
 
   cache:
     container_name: redis
     image: redis:alpine
+    networks:
+      - cache-movies-network
 
   database:
     container_name: mongoDB
@@ -33,10 +37,11 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
     networks:
-       - database-movies-network
-       - mongo-express-database-network
+      - mongo-express-database-network
+      - database-movies-network
+      - database-mongo-seed-network
     volumes: 
-       - profiledata:/data/db
+      - database-data:/data/db
 
   mongo-seed:
     container_name: mongo-seed
@@ -65,9 +70,9 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGODB_PASSWORD}
       - ME_CONFIG_MONGODB_URL=mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@database:27017/
     networks:
-       - mongo-express-database-network
+      - mongo-express-database-network
     depends_on:
       - database
     profiles:
       - development
-
+      
