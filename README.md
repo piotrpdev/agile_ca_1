@@ -18,3 +18,5 @@
   - Created `database-mongo-seed-network` network so the seed image can reach the MongoDB database.
   - Had to pass `--authenticationDatabase=admin` flag to avoid `mongoimport` error. Found that solution on [StackOverflow](https://stackoverflow.com/a/68937584/19020549).
   - Switched to using `command` property and bind mount instead of building a whole new image.
+- Learned that docker compose reads `.env` files and switched to using interpolation for MongoDB username and password.
+  - Changed `MONGODB_PASSWORD` in `.env` file to `secret` instead of the default `password` because it was causing issues.
