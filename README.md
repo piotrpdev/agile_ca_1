@@ -1,5 +1,7 @@
 # Agile Software Practice - Assignment 1
 
+## Steps taken
+
 - Transplanted `compose.yaml` from previous `docker-profile-app` lab repo.
 - Added `cache` service that uses `redis:alpine` image.
 - Tried `REDIS_URI=redis://localhost` but that didn't work
@@ -20,3 +22,21 @@
   - Switched to using `command` property and bind mount instead of building a whole new image.
 - Learned that docker compose reads `.env` files and switched to using interpolation for MongoDB username and password.
   - Changed `MONGODB_PASSWORD` in `.env` file to `secret` instead of the default `password` because it was causing issues.
+
+## Resources used
+
+- <https://stackoverflow.com/questions/45255066/create-networks-automatically-in-docker-compose>
+- <https://stackoverflow.com/questions/43308319/how-can-i-run-bash-in-a-docker-container>
+- <https://www.dragonflydb.io/error-solutions/redis-connection-error-111>
+- <https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach>
+- <https://medium.com/@akilblanchard09/creating-isolated-network-in-docker-ff55941e3665>
+- <https://github.com/mongo-express/mongo-express-docker/issues/126>
+- <https://github.com/mongo-express/mongo-express-docker/issues/120>
+- <https://www.reddit.com/r/docker/comments/13kxfjf/how_to_handle_dockercompose_for_production_and/>
+- <https://docs.docker.com/compose/how-tos/profiles/>
+- <https://stackoverflow.com/questions/31210973/how-do-i-seed-a-mongo-database-using-docker-compose>
+- <https://stackoverflow.com/a/55819683/19020549>
+- <https://www.mongodb.com/docs/database-tools/mongoimport/>
+- <https://stackoverflow.com/a/68937584/19020549>
+- <https://stackoverflow.com/a/59554543/19020549>
+- <https://stackoverflow.com/questions/29377853/how-can-i-use-environment-variables-in-docker-compose>
