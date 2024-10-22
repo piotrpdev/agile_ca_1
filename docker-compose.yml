@@ -1,7 +1,7 @@
 networks:
-   profile-network:
-       external: true
-       name: 'mongo-network'
+  mongo-express-database-network:
+  cache-movies-network:
+  database-movies-network:
 
 volumes:
   profiledata:
@@ -17,7 +17,8 @@ services:
     ports:
       - '9000:9000'
     networks:
-       - profile-network
+       - cache-movies-network
+       - database-movies-network
     depends_on:
       - database
 
@@ -32,7 +33,8 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=secret
     networks:
-       - profile-network
+       - database-movies-network
+       - mongo-express-database-network
     volumes: 
        - profiledata:/data/db 
 
@@ -47,7 +49,7 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
       - ME_CONFIG_MONGODB_SERVER=mongodb
     networks:
-       - profile-network
+       - mongo-express-database-network
     depends_on:
       - database
 
