@@ -38,6 +38,22 @@ services:
     volumes: 
        - profiledata:/data/db
 
+  mongo-seed:
+    container_name: mongo-seed
+    image: mongo:8.0-rc
+    depends_on:
+      - database
+    volumes:
+      - type: bind
+        source: ./seeding.json
+        target: /seeding.json
+    networks:
+      - database-mongo-seed-network
+    command:
+      mongoimport --authenticationDatabase=admin --db tmdb_movies --collection movies --drop --file /seeding.json --jsonArray mongodb://admin:secret@database:27017
+    profiles:
+      - development
+
   mongo-express:
     container_name: express
     image: mongo-express:1.0-20-alpine3.19

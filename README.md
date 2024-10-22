@@ -13,3 +13,8 @@
 - Researched ways to have certain docker compose services only start in development.
   - Found and implemented [compose profiles](https://docs.docker.com/compose/how-tos/profiles/).
   - By default, `docker compose up` starts production stack. `docker compose --profile development up` starts development stack.
+- Researched ways to seed database.
+  - Found and copied [this StackOverflow answer](https://stackoverflow.com/a/55819683/19020549) that involves creating an image for seeding.
+  - Created `database-mongo-seed-network` network so the seed image can reach the MongoDB database.
+  - Had to pass `--authenticationDatabase=admin` flag to avoid `mongoimport` error. Found that solution on [StackOverflow](https://stackoverflow.com/a/68937584/19020549).
+  - Switched to using `command` property and bind mount instead of building a whole new image.
