@@ -10,3 +10,6 @@
 - Created `cache-movies-network` network so the Movies API can reach the Redis cache.
 - Changed Express web app to use `ME_CONFIG_MONGODB_URL` env var instead of [outdated `ME_CONFIG_MONGODB_SERVER` env var](https://github.com/mongo-express/mongo-express-docker/issues/120).
   - [Setting `ME_CONFIG_MONGODB_SERVER` doesn't actually do anything, it always uses the default value](https://github.com/mongo-express/mongo-express-docker/issues/126).
+- Researched ways to have certain docker compose services only start in development.
+  - Found and implemented [compose profiles](https://docs.docker.com/compose/how-tos/profiles/).
+  - By default, `docker compose up` starts production stack. `docker compose --profile development up` starts development stack.

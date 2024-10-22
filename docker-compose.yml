@@ -36,7 +36,7 @@ services:
        - database-movies-network
        - mongo-express-database-network
     volumes: 
-       - profiledata:/data/db 
+       - profiledata:/data/db
 
   mongo-express:
     container_name: express
@@ -52,4 +52,6 @@ services:
        - mongo-express-database-network
     depends_on:
       - database
+    profiles:
+      - development
 
