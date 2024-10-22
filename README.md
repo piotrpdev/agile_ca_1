@@ -8,4 +8,5 @@
 - Created `mongo-express-database-network` network so the Express web app can only reach the MongoDB database.
 - Created `database-movies-network` network so the Movies API can reach the MongoDB database.
 - Created `cache-movies-network` network so the Movies API can reach the Redis cache.
-
+- Changed Express web app to use `ME_CONFIG_MONGODB_URL` env var instead of [outdated `ME_CONFIG_MONGODB_SERVER` env var](https://github.com/mongo-express/mongo-express-docker/issues/120).
+  - [Setting `ME_CONFIG_MONGODB_SERVER` doesn't actually do anything, it always uses the default value](https://github.com/mongo-express/mongo-express-docker/issues/126).

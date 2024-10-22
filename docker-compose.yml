@@ -47,7 +47,7 @@ services:
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
-      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_URL=mongodb://admin:secret@database:27017/
     networks:
        - mongo-express-database-network
     depends_on:
